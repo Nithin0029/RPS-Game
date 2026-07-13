@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS - Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Rock, Paper, Scissors</h1>
+        
+        <div class="result-box {{ winner }}">
+            <h2 class="result-message">{{ result_message }}</h2>
+            
+            <div class="choices-display">
+                <div class="choice-card user-card">
+                    <span class="label">You Chose</span>
+                    <span class="emoji">
+                        {% if user_choice == 'rock' %}✊
+                        {% elif user_choice == 'paper' %}✋
+                        {% else %}✌️{% endif %}
+                    </span>
+                    <span class="choice-name">{{ user_choice | capitalize }}</span>
+                </div>
+                
+                <div class="vs">VS</div>
+                
+                <div class="choice-card computer-card">
+                    <span class="label">Computer Chose</span>
+                    <span class="emoji">
+                        {% if computer_choice == 'rock' %}✊
+                        {% elif computer_choice == 'paper' %}✋
+                        {% else %}✌️{% endif %}
+                    </span>
+                    <span class="choice-name">{{ computer_choice | capitalize }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="score">
+            <h3>Score Board</h3>
+            <div class="score-stats">
+                <div class="stat win">
+                    <span class="stat-num">{{ session['wins'] }}</span>
+                    <span class="stat-lbl">Wins</span>
+                </div>
+                <div class="stat loss">
+                    <span class="stat-num">{{ session['loses'] }}</span>
+                    <span class="stat-lbl">Losses</span>
+                </div>
+                <div class="stat tie">
+                    <span class="stat-num">{{ session['ties'] }}</span>
+                    <span class="stat-lbl">Ties</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a href="/home" class="btn play-again">Play Again</a>
+            <a href="/reset" class="btn-link">Reset Game</a>
+        </div>
+    </div>
+</body>
+</html>
